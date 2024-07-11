@@ -47,3 +47,5 @@ Route::get('/products/{product}', [ProductsController ::class,'show'])->name('pr
 
 // index
 Route::get('/cart/{cart}', [CartController::class, 'show'])->name('cart.show');
+// Add to Cart
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');

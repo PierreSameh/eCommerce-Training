@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,6 +43,10 @@ class ProductsController extends Controller
     }
     // Single Product Callback
     public function show(Product $product) {
-        return view('pages/singleproduct', ['product'=> $product]);
+        Cart::firstOrCreate(['user_id' => auth()->id()]);
+
+        $cart = Cart::where('user_id', auth()->id())->first();
+
+        return view('pages/singleproduct', ['product'=> $product, 'cart'=> $cart]);
     }
 }

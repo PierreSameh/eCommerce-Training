@@ -58,103 +58,111 @@
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="{{route('cart.show' , 1)}}">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                            @if (Route::has('login'))
-<nav class="-mx-3 flex flex-1 justify-end">
-    @auth
-        <a
-            href="{{ url('/dashboard') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Profile
-        </a>
-    @else
-        <a
-            href="{{ route('login') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Log in
-        </a>
-
-        @if (Route::has('register'))
-            <a
-                href="{{ route('register') }}"
-                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-            >
-                Register
-            </a>
-        @endif
-    @endauth
-</nav>
-@endif
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
-    </header>
-    <!-- Header part end-->
-
-    @yield('content')
-
-    <!-- feature part here -->
-    <section class="feature_part section_padding">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-6">
-                    <div class="feature_part_tittle">
-                        <h3>Credibly innovate granular
-                        internal or organic sources
-                        whereas standards.</h3>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="feature_part_content">
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="{{ asset('img/icon/feature_icon_1.svg') }}" alt="#">
-                        <h4>Credit Card Support</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="{{ asset('img/icon/feature_icon_2.svg') }}" alt="#">
-                        <h4>Online Order</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="{{ asset('img/icon/feature_icon_3.svg') }}" alt="#">
-                        <h4>Free Delivery</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_feature_part">
-                        <img src="{{ asset('img/icon/feature_icon_4.svg') }}" alt="#">
-                        <h4>Product with Gift</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- feature part end -->
+                        <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        @if (Route::has('login'))
+                        @auth
+                        <a href="{{route('cart.show' , Auth::user()->id)}}">
+                        <i class="flaticon-shopping-cart-black-shape"></i>
+                        </a>
+                        @endauth
+                        @else 
+                           <a href="{{route('login')}}">
+                            <i class="flaticon-shopping-cart-black-shape"></i>
+                        </a>
+                        @endif
+                        @if (Route::has('login'))
+                            <nav class="-mx-3 flex flex-1 justify-end">
+                                @auth
+                                    <a
+                                        href="{{ url('/dashboard') }}"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    >
+                                    {{ Auth::user()->name }}
+                                    </a>
+                                @else
+                                    <a
+                                        href="{{ route('login') }}"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    >
+                                        Log in
+                                    </a>
+                                
+                                    @if (Route::has('register'))
+                                        <a
+                                            href="{{ route('register') }}"
+                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        >
+                                            Register
+                                        </a>
+                                    @endif
+                                @endauth
+                            </nav>
+                        @endif
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search_input" id="search_input_box">
+                                <div class="container ">
+                                    <form class="d-flex justify-content-between search-inner">
+                                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                                        <button type="submit" class="btn"></button>
+                                        <span class="ti-close" id="close_search" title="Close Search"></span>
+                                    </form>
+                                </div>
+                            </div>
+                        </header>
+                        <!-- Header part end-->
+                    
+                        @yield('content')
+                    
+                        <!-- feature part here -->
+                        <section class="feature_part section_padding">
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-lg-6">
+                                        <div class="feature_part_tittle">
+                                            <h3>Credibly innovate granular
+                                            internal or organic sources
+                                            whereas standards.</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="feature_part_content">
+                                            <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="single_feature_part">
+                                            <img src="{{ asset('img/icon/feature_icon_1.svg') }}" alt="#">
+                                            <h4>Credit Card Support</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="single_feature_part">
+                                            <img src="{{ asset('img/icon/feature_icon_2.svg') }}" alt="#">
+                                            <h4>Online Order</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="single_feature_part">
+                                            <img src="{{ asset('img/icon/feature_icon_3.svg') }}" alt="#">
+                                            <h4>Free Delivery</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="single_feature_part">
+                                            <img src="{{ asset('img/icon/feature_icon_4.svg') }}" alt="#">
+                                            <h4>Product with Gift</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+        <!-- feature part end -->
 
  <!-- client review part here -->
  <section class="client_review">
@@ -225,7 +233,7 @@
                     <div class="col-lg-12">
                         <div class="copyright_text">
                             <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
                             <div class="copyright_link">
                                 <a href="#">Turms & Conditions</a>
