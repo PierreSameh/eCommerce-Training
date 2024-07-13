@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends Model
 {
     use HasFactory;
-    protected $fillable = ['cart_id', 'product_id', 'quantity'];
-
+        protected $primaryKey = 'cartItem_id'; // Update this to your primary key if it's not 'id'
+    
+        protected $fillable = [
+            'cart_id',
+            'product_id',
+            'Quantity',
+        ];
+    
+        public $timestamps = true;
+    
     public function cart()
     {
         return $this->belongsTo(Cart::class);

@@ -42,15 +42,16 @@
         <p>${{$product->price}}</p>
         <form action="{{ route('cart.add') }}" method="POST">
         @csrf
+        @if (auth()->id())
         <input type="hidden" name="cart_id" value="{{$cart->cart_id}}">
         <input type="hidden" name="product_id" value="{{ $product->id }}">
-        
+        @endif
         <div class="card_area">
           <div class="product_count_area">
               <p>Quantity</p>
               <div class="product_count d-inline-block">
                   <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                  <input class="product_count_item input-number" type="text" value="1" min="0" max="10" name="quantity">
+                  <input class="product_count_item input-number" type="text" value="1" min="0" max="10" name="Quantity">
                   <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
               </div>
           </div>

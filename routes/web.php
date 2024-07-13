@@ -49,3 +49,7 @@ Route::get('/products/{product}', [ProductsController ::class,'show'])->name('pr
 Route::get('/cart/{cart}', [CartController::class, 'show'])->name('cart.show');
 // Add to Cart
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+// Update Cart
+Route::put('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+// Remove from Cart
+Route::delete('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');

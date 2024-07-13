@@ -43,8 +43,9 @@ class ProductsController extends Controller
     }
     // Single Product Callback
     public function show(Product $product) {
+        if (isset($user->id)) {
         Cart::firstOrCreate(['user_id' => auth()->id()]);
-
+        };
         $cart = Cart::where('user_id', auth()->id())->first();
 
         return view('pages/singleproduct', ['product'=> $product, 'cart'=> $cart]);
