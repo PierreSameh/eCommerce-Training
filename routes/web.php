@@ -5,13 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
 
 
 
-
-Route::get('/', function () {
-    return view('index');
-});
+// Laravel Breeze package
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -24,7 +23,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
+//////////////////////////////////////////////////////////////////////
+// Shop Main
 
 //Index Page Route
 Route::get('/', [StoreController::class, 'index'])-> name('shop.index');
@@ -36,13 +36,16 @@ Route::get('/products', [StoreController::class, 'products'])-> name('shop.produ
 Route::get('/contact', [StoreController::class,'contact'])->name('shop.contact');
 // Shopping Cart Page Route
 Route::get('/cart', [CartController::class, 'show'])->name('shop.show');
-// Dashboard Page Route
+//////////////////////////////////////////////////////////////////////
+// Products
+
+// Create Page Route
 Route::get('/create', [ProductsController ::class,'dashboard'])->name('dashboard.index');
 // Store Product Route
 Route::post('/create', [ProductsController ::class,'store'])->name('products.store');
 // Single Product Route
 Route::get('/products/{product}', [ProductsController ::class,'show'])->name('products.show');
-
+//////////////////////////////////////////////////////////////////////
 // Cart
 
 // index
@@ -53,3 +56,14 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')
 Route::put('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 // Remove from Cart
 Route::delete('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+/////////////////////////////////////////////////////////////////////
+// Order
+
+// Store Order in DB
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+// Checkout view
+Route::get('/checkout', [CheckoutController::class,'show'])->name('checkout.show');
+// Checkout data store
+Route::post('/checkout/store', [CheckoutController::class,'store'])->name('checkout.store');
+// Confirmation 
+Route::get('/confirmation', [CheckoutController::class, 'confirmation'])->name('confirmation.show');

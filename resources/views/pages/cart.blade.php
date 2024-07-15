@@ -106,7 +106,11 @@
             
             <div class="checkout_btn_inner float-right">
                 <a class="btn_1" href="{{route('shop.products')}}">Continue Shopping</a>
-                <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                <form action="{{ route('order.store') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="btn_1 checkout_btn_1">Proceed to checkout</button>
+                </form>
             </div>
             @endif
         </div>

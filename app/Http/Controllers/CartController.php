@@ -14,13 +14,15 @@ class CartController extends Controller
      // Create and Add to Cart
     public function addToCart(Request $request)
     {
+        // Check for a login session
         if(auth()->id()) {
+            // Create or find user's cart
             $cart = Cart::firstOrCreate(['user_id' => auth()->id()]);
 
              $cartItem = CartItem::where('cart_id', $cart->cart_id)
                 ->where('product_id', $request->product_id)
                 ->first();
-
+            // Add to Quantity if product in the cart
             if ($cartItem) {
                 // If the item exists, increase the quantity
                 $cartItem->Quantity += $request->Quantity;
@@ -37,6 +39,7 @@ class CartController extends Controller
             
             return back()->with('success', 'Product added to cart!');
         } else {
+            // If user is not signed in
             return view('auth/register');
 
     }
