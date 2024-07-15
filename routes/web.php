@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SearchController;
 
 
 
@@ -67,3 +68,6 @@ Route::get('/checkout', [CheckoutController::class,'show'])->name('checkout.show
 Route::post('/checkout/store', [CheckoutController::class,'store'])->name('checkout.store');
 // Confirmation 
 Route::get('/confirmation', [CheckoutController::class, 'confirmation'])->name('confirmation.show');
+
+
+Route::get('/search', [SearchController::class,'search'])->name('search.index');

@@ -25,8 +25,9 @@
                 <div class="col-md-4">
                     <div class="product_sidebar">
                         <div class="single_sedebar">
-                            <form action="#">
-                                <input type="text" name="#" placeholder="Search keyword">
+                            <form action="{{route('search.index')}}">
+                                <input type="text" name="query" placeholder="Search keyword">
+                                <button type="submit" class="btn"></button>
                                 <i class="ti-search"></i>
                             </form>
                         </div>
